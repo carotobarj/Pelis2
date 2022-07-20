@@ -1,7 +1,11 @@
 import axios from 'axios';
 import swal from '@sweetalert/with-react'
+import {useHistory } from 'react-router-dom';
 
-function Login() {   
+function Login() {  
+    const history = useHistory();
+    //console.log(history);
+
     const submitHandler = (e) => {
         e.preventDefault();
         const email = e.target.email.value;
@@ -26,6 +30,9 @@ function Login() {
             .then(res => {
                 swal(<h2>Ok, tu información está correcta</h2>);
                 console.log(res.data);
+                const tokenRecibido = res.data.token;
+                localStorage.setItem('token', tokenRecibido);
+              history.push('/listado')
             })
     }
 
