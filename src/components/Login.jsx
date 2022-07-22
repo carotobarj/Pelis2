@@ -1,6 +1,6 @@
 import axios from 'axios';
 import swal from '@sweetalert/with-react'
-import {useHistory } from 'react-router-dom';
+import {useHistory, Redirect } from 'react-router-dom';
 
 function Login() {  
     const history = useHistory();
@@ -36,8 +36,11 @@ function Login() {
             })
     }
 
+    let token = localStorage.getItem('token');
+    
     return (
         <>
+        {token && <Redirect to="/listado" />}
             <h2>Formulario de Login</h2>
             <form onSubmit={submitHandler}>
                 <label>
