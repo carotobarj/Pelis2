@@ -31,12 +31,12 @@ function Login() {
                 swal(<h2>Ok, tu información está correcta</h2>);
                 console.log(res.data);
                 const tokenRecibido = res.data.token;
-                localStorage.setItem('token', tokenRecibido);
+                sessionStorage.setItem('token', tokenRecibido);
               history.push('/listado')
             })
     }
 
-    let token = localStorage.getItem('token');
+    let token = sessionStorage.getItem('token');
     
     return (
         <>
