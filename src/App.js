@@ -7,6 +7,7 @@ import Listado from './components/Listado.jsx';
 import Header from './components/Header.jsx';
 import Footer from './components/Footer.jsx';
 import Detalle from './components/Detalle.jsx';
+import Resultados from './components/Resultados.jsx';
 
 // Styles
 // import "./css/App.css"
@@ -22,6 +23,7 @@ function App() {
           <Route exact path="/" component={Login} />
           <Route path="/listado" component={Listado} />
           <Route path="/detalle" component={Detalle} />
+          <Route path="/resultados" component={Resultados} />
 
         </Switch>
         </div>

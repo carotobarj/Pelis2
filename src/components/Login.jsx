@@ -1,8 +1,8 @@
 import axios from 'axios';
 import swal from '@sweetalert/with-react'
-import {useHistory, Redirect } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 
-function Login() {  
+function Login() {
     const history = useHistory();
     //console.log(history);
 
@@ -24,7 +24,7 @@ function Login() {
             swal(<h2>Credenciales inválidas</h2>);
             return;
         }
-        
+
         axios
             .post('http://challenge-react.alkemy.org', { email, password })
             .then(res => {
@@ -32,31 +32,35 @@ function Login() {
                 console.log(res.data);
                 const tokenRecibido = res.data.token;
                 sessionStorage.setItem('token', tokenRecibido);
-              history.push('/listado')
+                history.push('/listado')
             })
     }
 
     let token = sessionStorage.getItem('token');
-    
+
     return (
         <>
-        {token && <Redirect to="/listado" />}
-            <h2>Formulario de Login</h2>
-            <form onSubmit={submitHandler}>
-                <label>
-                    <span>Correo Electrónico</span>
-                    <br />
-                    <input type="text" name="email" />
-                </label>
-                <br />
-                <label>
-                    <span>Contraseña</span>
-                    <br />
-                    <input type="password" name="password" />
-                </label>
-                <br />
-                <button type="submit">Login</button>
-            </form>
+            {token && <Redirect to="/listado" />}
+            <div className="row">
+                <div>
+                    <h2>Formulario de Login</h2>
+                    <form onSubmit={submitHandler}>
+                        <label className="form-label d-block mt-2">
+                            <span>Correo Electrónico</span><br />
+                            <input className="form-control" type="text" name="email" />
+                        </label>
+                        <br />
+                        <label className="form-label d-block mt-2">
+                            <span>Contraseña</span>
+                            <br />
+                            <input className="form-control" type="password" name="password" />
+                        </label>
+                        <br />
+                        <button className="btn btn-success mt-2" type="submit">Login</button>
+                    </form>
+                </div>
+            </div>
+
         </>
 
     )
