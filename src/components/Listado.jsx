@@ -4,8 +4,11 @@ import axios from 'axios';
 import swal from '@sweetalert/with-react';
 
 
-function Listado() {
+function Listado(props) {
+
   let token = sessionStorage.getItem('token');
+
+  // console.log(props);
 
   const [moviesList, setMoviesList] = useState([])
 
@@ -20,7 +23,7 @@ function Listado() {
        swal(<h2>Perdón por el inconveniente, intenta mas tarde</h2>)
       })
   }, []);
-  console.log(moviesList);
+  // console.log(moviesList);
 
   return (
     <>
@@ -33,6 +36,7 @@ function Listado() {
               <div className='col-3' key={index}>
                 <div className="card my-4">
                   <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="card-img-top" alt="..." />
+                  <button className="favorite-btn" onClick={props.addOrRemoveFromFavs} data-movie-id={movie.id}>🖤</button>
                   <div className="card-body">
                     <h5 className="card-title">{movie.title.substring(0,30)}...</h5>
                     <p className="card-text">{movie.overview.substring(0,100)}...</p>

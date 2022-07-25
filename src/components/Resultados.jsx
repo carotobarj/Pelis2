@@ -32,7 +32,7 @@ function Resultados() {
                                 <div className="card my-4">
                                     <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="card-img-top" alt="..." />
                                     <div className="card-body">
-                                        <h5 className="card-title">{movie.title.substring(0, 30)}...</h5>
+                                        <h5 className="card-title">{movie.title}</h5>
                                         <Link to={`/detalle?movieID=${movie.id}`} className="btn btn-primary">View Detail</Link>
                                     </div>
                                 </div>
