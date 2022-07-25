@@ -3,7 +3,7 @@ import swal from '@sweetalert/with-react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
 
-function Resultados() {
+function Resultados(props) {
     let query = new URLSearchParams(window.location.search);
     let keyword = query.get('keyword');
 
@@ -14,11 +14,13 @@ function Resultados() {
         axios.get(endPointResults)
             .then(response => {
                 const resultsData = response.data.results;
+
+                if(resultsData.length === 0){
+                    swal(<h2>no se encontraron resultados</h2>)
+                }
                 setResultados(resultsData);
             })
-            .catch(error => {
-                swal(<h2>No hay resultados</h2>)
-            })
+            .catch(error => console.log(error));
     }, [keyword]);
 
     return (
